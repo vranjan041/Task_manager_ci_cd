@@ -11,7 +11,8 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[credentialsId: 'new_git_token', url: 'https://github.com/vranjan041/TO_DO_CICD.git']])                    }
+            checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[credentialsId: 'new_git_token', url: 'https://github.com/vranjan041/Task_manager_ci_cd.git']])
+            }
         }
 
         stage('Build Docker Images') {
