@@ -1,0 +1,18 @@
+# Stage 1: Build the backend app
+FROM node:18.18.0-alpine 
+
+# Set working directory
+WORKDIR /app
+
+# Copy 
+COPY . .
+
+# Install all dependencies, including dev dependencies for build
+RUN npm install
+
+WORKDIR /app/server
+# Expose the backend port
+EXPOSE 5000
+
+# Start the backend app
+CMD ["node", "index.js"]

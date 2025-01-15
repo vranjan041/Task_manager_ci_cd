@@ -1,0 +1,39 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.custom-calendar {
+  @apply w-full max-w-4xl mx-auto bg-white rounded-xl shadow-lg p-6;
+}
+
+.react-calendar__tile {
+  @apply h-24 flex flex-col justify-start items-center p-1;
+}
+
+.react-calendar__month-view__days__day--weekend {
+  @apply text-red-600;
+}
+
+.react-calendar__tile--active {
+  @apply bg-primary-600 text-white;
+}
+
+.react-calendar__tile--now {
+  @apply bg-primary-50;
+}
+
+.react-calendar button {
+  @apply rounded-lg transition-colors duration-200;
+}
+
+.react-calendar button:hover {
+  @apply bg-primary-50;
+}
+
+.Toastify__toast {
+  @apply rounded-lg shadow-lg;
+}
+
+.Toastify__toast-body {
+  @apply font-sans;
+}

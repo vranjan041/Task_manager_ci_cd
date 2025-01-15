@@ -1,0 +1,19 @@
+# Stage 1: Build the frontend app
+FROM node:20-alpine 
+
+# Set working directory
+WORKDIR /app
+
+COPY package*.json .
+
+# Install all dependencies, including dev dependencies for build
+RUN npm install
+
+# Copy
+COPY . .
+
+EXPOSE 5173
+
+# Start the frontend app
+CMD ["npm", "run", "dev"]
+
