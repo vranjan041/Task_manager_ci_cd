@@ -14,8 +14,6 @@ jobs:
     env:
       DOCKER_IMAGE_NAME: vranjan041/to_do
       DOCKER_TAG: latest
-      DOCKER_USERNAME: vranjan041
-      DOCKER_PASSWORD: ${{ secrets.DOCKERHUB_PASSWORD }}
 
     steps:
       - name: Checkout repository
@@ -34,7 +32,7 @@ jobs:
 
       - name: Log in to DockerHub
         run: |
-          echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+          echo ${{ secrets.password }} | docker login -u ${{ secrets.username }} --password-stdin
 
       - name: Push Backend Docker Image to DockerHub
         run: |
