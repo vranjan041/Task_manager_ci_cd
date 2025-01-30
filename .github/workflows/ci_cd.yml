@@ -1,0 +1,83 @@
+name: Docker Image CI
+
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+    branches: ["main"]
+
+jobs:
+  push_image_to_hub:
+    name: Build and push image to repository
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: checkout repo
+        uses: actions/checkout@v3
+
+      - name: setup node
+        uses: actions/setup-node@v3
+        with:
+          node-version: "20"
+
+      - name: Instaling dependencies
+        run: npm install
+
+      - name: Run security audit
+        run: npm audit --audit-level=moderate
+
+      - name: login to docker
+        run: echo ${{ secrets.password }} | docker login -u ${{ secrets.username }} --password-stdin
+
+      - name: setup docker buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: export image to dockerhub
+        uses: docker/build-push-action@v4
+        with:
+          context: .
+          push: true
+          tags: vranjan041/github_actions_demo:v1
+
+      - name: echoing
+        run: echo "completed successfully"
+
+      - name: logout
+        run: docker logout
+  run_deployment_on_minikube:
+    name: Run on kubernetes cluster
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: start minikube
+        uses: medyagh/setup-minikube@v0.0.16
+
+      - name: Get pods
+        run: kubectl get pods -A
+
+      - name: checkout repo
+        uses: actions/checkout@v3
+
+      - name: Run deloyment
+        run: kubectl apply -f deployment.yaml
+
+      - name: Wait for the pods to be ready
+        run: kubectl wait --for=condition=ready pod --all --timeout=300s
+
+      - name: kubectl get pods and svc
+        run: |
+          kubectl get pods
+          kubectl get svc
+
+      - name: Output
+        run: curl http://192.168.49.2:30001/
+
+      - name: Output on about
+        run: curl http://192.168.49.2:30001/about
+
+      - name: Wait for the service to be ready
+        run: |
+          while ! minikube service my-service --url; do
+            echo "Waiting for service to be ready..."
+            sleep 10
+          done
