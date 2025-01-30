@@ -91,10 +91,10 @@ jobs:
             sleep 10
           done
 
-          - name: Wait for testing
-          run: |
-            echo "Waiting for 4 minutes to allow testing..."
-            sleep 240  # 240 seconds = 4 minutes
+      - name: Wait for testing
+        run: |
+          echo "Waiting for 4 minutes to allow testing..."
+          sleep 240  # 240 seconds = 4 minutes
 
       - name: Check service accessibility
         run: |
