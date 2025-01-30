@@ -7,7 +7,6 @@ import jwt from "jsonwebtoken";
 import dotenv from "dotenv";
 
 dotenv.config();
-
 const app = express();
 const PORT = 5000;
 const JWT_SECRET = "your-secret-key"; // In production, use environment variable
