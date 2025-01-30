@@ -7,7 +7,7 @@ const priorityOrder = {
   low: 3,
 };
 
-const PORT = 30005;
+const PORT = 5000;
 
 export const useTodos = (token) => {
   const [todos, setTodos] = useState([]);
@@ -16,7 +16,7 @@ export const useTodos = (token) => {
     if (!token) return;
 
     try {
-      const response = await fetch(`http://192.168.49.2:${PORT}/api/todos`, {
+      const response = await fetch(`http://localhost:${PORT}/api/todos`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -38,7 +38,7 @@ export const useTodos = (token) => {
 
     try {
       const response = await fetch(
-        `http://192.168.49.2:${PORT}/api/todos/upcoming`,
+        `http://localhost:${PORT}/api/todos/upcoming`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
