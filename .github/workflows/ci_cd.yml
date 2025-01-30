@@ -91,6 +91,11 @@ jobs:
             sleep 10
           done
 
+      - name: Run services
+        run: |
+          minikube service backend-service
+          minikube service frontend-service
+
       - name: Wait for testing
         run: |
           echo "Waiting for 4 minutes to allow testing..."
