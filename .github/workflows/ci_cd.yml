@@ -93,8 +93,8 @@ jobs:
 
       - name: Run services
         run: |
-          minikube service backend-service
-          minikube service frontend-service
+          docker run -d -p 5000:5000 $DOCKER_IMAGE_NAME-backend:$DOCKER_TAG
+          docker run -d -p 5173:5173 $DOCKER_IMAGE_NAME-frontend:$DOCKER_TAG
 
       - name: Wait for testing
         run: |
