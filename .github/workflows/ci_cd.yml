@@ -45,6 +45,7 @@ jobs:
   run_deployment_on_minikube:
     name: Run on kubernetes cluster
     runs-on: ubuntu-latest
+    needs: build
 
     steps:
       - name: start minikube
