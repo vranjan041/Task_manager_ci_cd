@@ -15,7 +15,6 @@ pipeline {
             }
         }
 
-
         stage('Build Docker Images') {
             parallel {
                 stage('Build Backend Docker Image') {
