@@ -76,10 +76,10 @@ jobs:
           kubectl get svc
 
       - name: Output Backend
-        run: curl http://192.168.49.2:30005/
+        run: curl --retry 3 --retry-delay 5 --retry-max-time 30 http://192.168.49.2:30005/
 
       - name: Output Frontend
-        run: curl http://192.168.49.2:30006/
+        run: curl --retry 3 --retry-delay 5 --retry-max-time 30 http://192.168.49.2:30006/
 
       # - name: Run the tests
       #   run: |
