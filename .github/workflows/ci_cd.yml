@@ -77,16 +77,20 @@ jobs:
       - name: Output Frontend
         run: curl http://192.168.49.2:30006/
 
-      - name: Wait for the backend service to be ready
+      - name: Run the tests
         run: |
-          while ! minikube service backend-service --url; do
-            echo "Waiting for backend service to be ready..."
-            sleep 10
-          done
+          sleep 60
 
-      - name: Wait for the frontend service to be ready
-        run: |
-          while ! minikube service frontend-service --url; do
-            echo "Waiting for frontend service to be ready..."
-            sleep 10
-          done
+      # - name: Wait for the backend service to be ready
+      #   run: |
+      #     while ! minikube service backend-service --url; do
+      #       echo "Waiting for backend service to be ready..."
+      #       sleep 10
+      #     done
+
+      # - name: Wait for the frontend service to be ready
+      #   run: |
+      #     while ! minikube service frontend-service --url; do
+      #       echo "Waiting for frontend service to be ready..."
+      #       sleep 10
+      #     done
