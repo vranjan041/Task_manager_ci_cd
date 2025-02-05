@@ -81,6 +81,6 @@ jobs:
       - name: Output Frontend
         run: curl http://192.168.49.2:30006/
 
-      - name: Run the tests
-        run: |
-          sleep 60
+      # - name: Run the tests
+      #   run: |
+      #     sleep 60
